@@ -93,6 +93,7 @@ void my_printf(const char *format, ...) {
 int main() {
     setlocale(LC_ALL, "");  // UTF-8 のロケール設定
 
+    my_printf("ゼロ: %d\n", 0);
     my_printf("正の数: %d\n", 1234);
     my_printf("負の数: %d\n", -56789);
 
