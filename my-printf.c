@@ -1,6 +1,11 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <locale.h>
+#include <string.h>
+
+void my_puts(const char *s) {
+    write(1, s, strlen(s));  // 文字列全体を出力
+}
 
 // UTF-8 文字を 1 文字ずつ出力
 void my_put_utf8_char(const char **p) {
@@ -25,6 +30,7 @@ void my_printf(const char *format, ...) {
         if (*format == '%') {
             format++;
             switch (*format) {
+                case 's': my_puts(va_arg(args, char*)); break;
                 case 'c': {
                     char c = (char)va_arg(args, int);
                     write(1, &c, 1);
@@ -46,7 +52,9 @@ void my_printf(const char *format, ...) {
 int main() {
     setlocale(LC_ALL, "");  // UTF-8 のロケール設定
 
-    my_printf("日本語\n");
+    my_printf("英語: %s\n", "Hello, world!");
+    my_printf("日本語: %s\n", "こんにちは 世界");
+    
     my_printf("char: %c\n", 'A');
     my_printf("%%\n");
     my_printf("%a\n");
