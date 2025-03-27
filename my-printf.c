@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include <unistd.h>
+#include <locale.h>
 
 // UTF-8 文字を 1 文字ずつ出力
 void my_put_utf8_char(const char **p) {
@@ -43,6 +44,8 @@ void my_printf(const char *format, ...) {
 }
 
 int main() {
+    setlocale(LC_ALL, "");  // UTF-8 のロケール設定
+
     my_printf("日本語\n");
     my_printf("char: %c\n", 'A');
     my_printf("%%\n");
