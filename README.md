@@ -21,6 +21,7 @@ gcc my-printf.c -o my-printf
 ### 実行結果
 
 ```bash
+ゼロ: 0
 正の数: 1234
 負の数: -56789
 英語: Hello, world!
